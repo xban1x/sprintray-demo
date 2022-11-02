@@ -1,0 +1,6 @@
+<ng-container *ngFor="let breadcrumb of BREADCRUMBS; let i = index">
+  <a [routerLink]="breadcrumb.link" [class.disabled]="!breadcrumb.link">{{
+    breadcrumb.text
+  }}</a>
+  <mat-icon *ngIf="i + 1 < BREADCRUMBS.length">chevron_right</mat-icon>
+</ng-container>

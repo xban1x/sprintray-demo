@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  align-items: center;
+  padding: 15px 32px;
+  background-color: var(--bg-dark);
+  a {
+    color: var(--font-white-me);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    &.disabled {
+      color: var(--font-white-disabled);
+    }
+    &:last-child {
+      color: var(--font-white-he);
+    }
+  }
+  mat-icon {
+    margin: 0 8px;
+    color: var(--font-white-me);
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
+}

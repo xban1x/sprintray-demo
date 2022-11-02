@@ -1,0 +1,190 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$sprintray-primary: (
+  50: #fcfdfe,
+  100: #f7f8fa,
+  200: #f2f3f5,
+  300: #edeef0,
+  400: #cfd0d2,
+  500: #b2b3b5,
+  600: #88898a,
+  700: #737475,
+  800: #535455,
+  900: #303132,
+  contrast: (
+    50: rgba(0, 0, 0, 0.87),
+    100: rgba(0, 0, 0, 0.87),
+    200: rgba(0, 0, 0, 0.87),
+    300: rgba(0, 0, 0, 0.87),
+    400: rgba(0, 0, 0, 0.87),
+    500: rgba(0, 0, 0, 0.87),
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+  ),
+);
+
+$sprintray-accent: (
+  50: #ffeaf0,
+  100: #ffcbd6,
+  200: #f096a0,
+  300: #e76d7b,
+  400: #f4465b,
+  500: #fb2b43,
+  600: #eb1f41,
+  700: #d9103b,
+  800: #cc0033,
+  900: #a80023,
+  contrast: (
+    50: rgba(0, 0, 0, 0.87),
+    100: rgba(0, 0, 0, 0.87),
+    200: rgba(0, 0, 0, 0.87),
+    300: rgba(0, 0, 0, 0.87),
+    400: rgba(0, 0, 0, 0.87),
+    500: rgba(0, 0, 0, 0.87),
+    600: rgba(0, 0, 0, 0.87),
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+  ),
+);
+
+$sprintray-warn: (
+  50: #fff2e1,
+  100: #ffdeb5,
+  200: #ffc885,
+  300: #ffb157,
+  400: #ffa038,
+  500: #ff9125,
+  600: #fc8525,
+  700: #f57623,
+  800: #ee6622,
+  900: #e34c20,
+  contrast: (
+    50: rgba(0, 0, 0, 0.87),
+    100: rgba(0, 0, 0, 0.87),
+    200: rgba(0, 0, 0, 0.87),
+    300: rgba(0, 0, 0, 0.87),
+    400: rgba(0, 0, 0, 0.87),
+    500: rgba(0, 0, 0, 0.87),
+    600: rgba(0, 0, 0, 0.87),
+    700: rgba(0, 0, 0, 0.87),
+    800: #ffffff,
+    900: #ffffff,
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$sprintray-demo-primary: mat.define-palette($sprintray-primary);
+$sprintray-demo-accent: mat.define-palette($sprintray-accent, 800, 100, 900);
+
+// The warn palette is optional (defaults to red).
+$sprintray-demo-warn: mat.define-palette($sprintray-warn);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$sprintray-demo-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $sprintray-demo-primary,
+      accent: $sprintray-demo-accent,
+      warn: $sprintray-demo-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($sprintray-demo-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fafafa;
+}
+
+// Override globaly Material styles for Header badges
+.mat-badge-small .mat-badge-content {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.mat-badge-small.mat-badge-overlap.mat-badge-after .mat-badge-content {
+  right: -12px;
+}
+.mat-badge-small.mat-badge-above .mat-badge-content {
+  top: -8px;
+}
+// Override chips in App Treatment Card
+app-treatment-card {
+  .mat-chip-list-wrapper {
+    margin: 0;
+    gap: 8px;
+    .mat-standard-chip {
+      margin: 0;
+      min-height: 24px;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 18px;
+      padding: 3px 10px;
+      color: var(--font-dark-he);
+      &.mat-chip-disabled {
+        opacity: 1;
+      }
+    }
+  }
+}
+// Override form fields
+mat-form-field.mat-form-field-appearance-fill {
+  // &.mat-form-field-should-float .mat-form-field-label {
+  //   transform: translateY(-16px) scale(0.75);
+  // }
+  color: var(--font-dark-he);
+  .mat-form-field-wrapper {
+    padding: 0;
+  }
+  .mat-form-field-flex {
+    padding: 8.5px 12px 11px;
+    align-items: flex-end;
+  }
+  .mat-form-field-infix {
+    margin: 0 0 -12px;
+    padding: 0 0 12px;
+  }
+  .mat-form-field-underline {
+    bottom: 0;
+  }
+  .mat-form-field-subscript-wrapper {
+    display: none;
+  }
+}
+:root {
+  --bg-dark: #191919;
+  --font-dark-he: rgba(0, 0, 0, 0.87);
+  --font-dark-me: rgba(0, 0, 0, 0.52);
+  --font-white-he: #fff;
+  --font-white-me: rgba(255, 255, 255, 0.65);
+  --font-white-disabled: rgba(255, 255, 255, 0.38);
+  --divider-dark: rgba(255, 255, 255, 0.08);
+  --divider-light: rgba(0, 0, 0, 0.06);
+}

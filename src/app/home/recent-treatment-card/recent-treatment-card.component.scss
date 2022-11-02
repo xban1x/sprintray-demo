@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  border: 1px solid var(--divider-light);
+  padding: 7px 16px;
+  max-width: 244px;
+  width: calc(244px - 32px);
+  border-radius: 8px;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    border: 1px solid rgba(83, 84, 85, 0.5);
+    box-shadow: 0px 16px 24px rgba(83, 84, 85, 0.16);
+  }
+  &.active {
+    border: 1px solid #cc0033;
+  }
+}
+p.name {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--font-dark-he);
+  margin-bottom: 0;
+}
+
+.img-container {
+  width: 48px;
+  height: 48px;
+  img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+  }
+}

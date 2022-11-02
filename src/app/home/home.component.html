@@ -1,0 +1,59 @@
+<app-header></app-header>
+<app-breadcrumbs></app-breadcrumbs>
+<main>
+  <aside>
+    <div class="title">
+      <h2>Alena George</h2>
+      <p>ID: PM1211-1275453</p>
+    </div>
+    <div class="steps">
+      <div class="treatment-step">
+        <div class="header">
+          <p class="title">Treatment</p>
+          <p class="empty">Select treatment</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <article>
+    <div class="header">
+      <div class="left">
+        <p>Step 1</p>
+        <h1>Select Treatment</h1>
+      </div>
+      <div class="right">
+        <mat-form-field class="search">
+          <mat-label>Search</mat-label>
+          <input matInput />
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="category">
+          <mat-label>Filter by Category</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let tag of TAGS" [value]="tag">{{
+              tag
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="featured">
+      <div class="title">
+        <mat-icon>star</mat-icon>
+        Recently used:
+      </div>
+      <div class="recent-treatments">
+        <app-recent-treatment-card
+          *ngFor="let treatment of TREATMENTS.slice(0, 4)"
+          [treatment]="treatment"
+        ></app-recent-treatment-card>
+      </div>
+    </div>
+    <div class="treatments">
+      <app-treatment-card
+        *ngFor="let treatment of TREATMENTS"
+        [treatment]="treatment"
+      ></app-treatment-card>
+    </div>
+  </article>
+</main>

@@ -1,0 +1,111 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  display: flex;
+  aside {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: calc(360px - 64px);
+    padding: 32px;
+    > .title {
+      padding-bottom: 28px;
+      margin-bottom: 16px;
+      h2 {
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        color: var(--font-dark-he);
+        margin-bottom: 4px;
+      }
+      p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: var(--font-dark-me);
+        margin-bottom: 0;
+      }
+      border-bottom: 1px solid var(--divider-light);
+    }
+    .treatment-step {
+      .title {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: var(--font-dark-me);
+        letter-spacing: 0.4px;
+        margin-bottom: 4px;
+      }
+      .empty {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+        color: var(--font-dark-me);
+      }
+    }
+  }
+  article {
+    padding: 0 24px;
+    flex-grow: 1;
+    .header {
+      padding: 26px 0 26px;
+      border-bottom: 1px solid var(--divider-light);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 4px;
+        color: var(--font-dark-me);
+      }
+      h1 {
+        font-weight: 400;
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 0;
+        color: var(--font-dark-he);
+      }
+      .right {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .featured {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+      .title {
+        display: flex;
+        align-items: center;
+        mat-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 16px;
+          margin-right: 8px;
+        }
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: var(--font-dark-me);
+      }
+      .recent-treatments {
+        display: flex;
+        gap: 16px;
+      }
+    }
+    .treatments {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 246px));
+      gap: 16px;
+    }
+  }
+}

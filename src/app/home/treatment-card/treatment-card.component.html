@@ -1,0 +1,30 @@
+<div class="header">
+  <mat-chip-list>
+    <mat-chip
+      *ngFor="let tag of treatment.tags"
+      [selected]="tag === 'AI Services'"
+      [color]="tag === 'AI Services' ? 'accent' : ''"
+      (click)="onChipSelected($event, this)"
+      >{{ tag }}</mat-chip
+    >
+    <mat-chip *ngIf="treatment.new" selected disabled color="accent"
+      >New</mat-chip
+    >
+  </mat-chip-list>
+  <div class="img-container">
+    <img [src]="treatment.image" />
+  </div>
+  <p class="name">
+    {{ treatment.name }}
+  </p>
+</div>
+<div class="properties">
+  <div class="property">
+    <span class="label">Turnaround Time:</span>
+    <span class="value">{{ treatment.turnaround_time }}</span>
+  </div>
+  <div class="property">
+    <span class="label">Price</span>
+    <span class="value">{{ treatment.price }}</span>
+  </div>
+</div>
