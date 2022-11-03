@@ -1,9 +1,9 @@
 :host {
   display: flex;
   border: 1px solid var(--divider-light);
-  padding: 7px 16px;
-  max-width: 244px;
-  width: calc(244px - 32px);
+  padding: 8px 16px;
+  box-sizing: border-box;
+  width: 244px;
   border-radius: 8px;
   background-color: #fff;
   justify-content: space-between;

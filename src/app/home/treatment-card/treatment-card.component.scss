@@ -3,8 +3,8 @@
   flex-direction: column;
   border: 1px solid var(--divider-light);
   padding: 16px 16px 18px;
-  max-width: 244px;
-  width: calc(244px - 32px);
+  width: 246px;
+  box-sizing: border-box;
   border-radius: 8px;
   background-color: #fff;
   justify-content: space-between;

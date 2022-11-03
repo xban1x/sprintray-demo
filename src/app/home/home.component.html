@@ -24,8 +24,11 @@
       <div class="right">
         <mat-form-field class="search">
           <mat-label>Search</mat-label>
-          <input matInput />
+          <input #search matInput />
           <mat-icon matPrefix>search</mat-icon>
+          <mat-icon *ngIf="search.value" matSuffix (click)="search.value = ''"
+            >close</mat-icon
+          >
         </mat-form-field>
         <mat-form-field class="category">
           <mat-label>Filter by Category</mat-label>

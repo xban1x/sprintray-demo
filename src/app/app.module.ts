@@ -6,6 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsDataPluginModule, NGXS_DATA_CONFIG } from '@angular-ru/ngxs';
+import {
+  NGXS_DATA_STORAGE_CONTAINER,
+  NGXS_DATA_STORAGE_EXTENSION,
+} from '@angular-ru/ngxs/storage';
+import { NgxsSelectSnapshotModule } from '@ngxs-labs/select-snapshot';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +26,20 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgxsDataPluginModule.forRoot([
+      NGXS_DATA_STORAGE_EXTENSION,
+      NGXS_DATA_STORAGE_CONTAINER,
+    ]),
+    NgxsModule.forRoot([], {
+      developmentMode: !environment.production,
+    }),
+    NgxsStoragePluginModule.forRoot({
+      key: ['cart'],
+    }),
+    NgxsRouterPluginModule.forRoot(),
+    NgxsFormPluginModule.forRoot(),
+    NgxsSelectSnapshotModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [
     {

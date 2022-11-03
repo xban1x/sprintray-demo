@@ -76,6 +76,10 @@ main {
       .right {
         display: flex;
         align-items: center;
+        gap: 16px;
+        mat-form-field {
+          color: var(--font-dark-he);
+        }
       }
     }
     .featured {

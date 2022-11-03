@@ -1,8 +1,11 @@
 :host {
   display: flex;
   align-items: center;
-  padding: 15px 32px;
+  padding: 16px 32px;
+  height: 52px;
+  box-sizing: border-box;
   background-color: var(--bg-dark);
+  border-top: 1px solid var(--divider-dark);
   a {
     color: var(--font-white-me);
     text-decoration: none;
