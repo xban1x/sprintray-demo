@@ -4,7 +4,7 @@
       *ngFor="let tag of treatment.tags"
       [selected]="tag === 'AI Services'"
       [color]="tag === 'AI Services' ? 'accent' : ''"
-      (click)="onChipSelected($event, this)"
+      (click)="onChipSelected($event)"
       >{{ tag }}</mat-chip
     >
     <mat-chip *ngIf="treatment.new" selected disabled color="accent"

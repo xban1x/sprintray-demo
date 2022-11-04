@@ -18,6 +18,7 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { environment } from 'src/environments/environment';
+import { HomeService } from './services/home.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,11 +31,11 @@ import { environment } from 'src/environments/environment';
       NGXS_DATA_STORAGE_EXTENSION,
       NGXS_DATA_STORAGE_CONTAINER,
     ]),
-    NgxsModule.forRoot([], {
+    NgxsModule.forRoot([HomeService], {
       developmentMode: !environment.production,
     }),
     NgxsStoragePluginModule.forRoot({
-      key: ['cart'],
+      key: [],
     }),
     NgxsRouterPluginModule.forRoot(),
     NgxsFormPluginModule.forRoot(),

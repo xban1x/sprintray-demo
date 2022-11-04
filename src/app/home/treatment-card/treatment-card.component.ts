@@ -10,7 +10,7 @@ export class TreatmentCardComponent {
   @Input()
   treatment: any;
 
-  onChipSelected(event: any, element: any): void {
+  onChipSelected(event: any): void {
     event.currentTarget.blur();
   }
 }

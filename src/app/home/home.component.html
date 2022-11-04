@@ -33,7 +33,7 @@
         <mat-form-field class="category">
           <mat-label>Filter by Category</mat-label>
           <mat-select multiple>
-            <mat-option *ngFor="let tag of TAGS" [value]="tag">{{
+            <mat-option *ngFor="let tag of tags" [value]="tag">{{
               tag
             }}</mat-option>
           </mat-select>
@@ -47,15 +47,19 @@
       </div>
       <div class="recent-treatments">
         <app-recent-treatment-card
-          *ngFor="let treatment of TREATMENTS.slice(0, 4)"
+          *ngFor="let treatment of recent_treatments"
           [treatment]="treatment"
+          (click)="home.selectTreatment(treatment)"
+          [class.active]="selected && selected.name === treatment.name"
         ></app-recent-treatment-card>
       </div>
     </div>
     <div class="treatments">
       <app-treatment-card
-        *ngFor="let treatment of TREATMENTS"
+        *ngFor="let treatment of treatments"
         [treatment]="treatment"
+        (click)="home.selectTreatment(treatment)"
+        [class.active]="selected && selected.name === treatment.name"
       ></app-treatment-card>
     </div>
   </article>
