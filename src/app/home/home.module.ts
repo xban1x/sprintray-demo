@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { TreatmentCardComponent } from './treatment-card/treatment-card.component';
 import { RecentTreatmentCardComponent } from './recent-treatment-card/recent-treatment-card.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RecentTreatmentCardComponent } from './recent-treatment-card/recent-tre
     MatIconModule,
     MatSelectModule,
     MatChipsModule,
+    MatButtonModule
   ],
 })
 export class HomeModule {}

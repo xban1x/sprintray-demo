@@ -8,9 +8,36 @@
     </div>
     <div class="steps">
       <div class="treatment-step">
-        <div class="header">
-          <p class="title">Treatment</p>
-          <p class="empty">Select treatment</p>
+        <ng-template #emptyTreatment>
+          <div class="treatment">
+            <div class="header">
+              <div>
+              <p class="title">Treatment</p>
+              <p class="empty">Select treatment</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <div *ngIf="selected; else emptyTreatment" class="treatment">
+          <div class="header">
+            <div>
+              <p class="title">Treatment</p>
+              <p class="name">{{ selected.name }}</p>
+            </div>
+            <div class="img-container">
+              <img src="{{ selected.image }}" />
+            </div>
+          </div>
+          <div class="properties">
+            <div class="property">
+              <span class="label">Turnaround time:</span>
+              <span class="value">{{ selected.turnaround_time }}</span>
+            </div>
+            <div class="property">
+              <span class="label">Price</span>
+              <span class="value">{{ selected.price }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -62,5 +89,42 @@
         [class.active]="selected && selected.name === treatment.name"
       ></app-treatment-card>
     </div>
+    <div class="footer">
+      <p>Copyright © {{currentYear()}} SprintRay Inc. All rights reserved.</p>
+      <div class="links">
+        <a href="/feedback"><mat-icon>chat_bubble</mat-icon> Give us Feedback</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-use">Terms of Use</a>
+      </div>
+    </div>
   </article>
+  <div class="stepper">
+    <button mat-flat-button color="accent" disabled>BACK</button>
+    <div class="steps">
+      <div class="step current">
+        <span class="chip">1</span>
+        <span>Treatment</span>
+      </div>
+      <div class="divider"></div>
+      <div class="step"><span class="chip">2</span>
+        <span>Details</span></div>
+      <div class="divider"></div>
+      <div class="step"><span class="chip">3</span>
+        <span>Files</span></div>
+      <div class="divider"></div>
+      <div class="step">
+        <span class="chip">4</span>
+        <span>Print Settings</span>
+      </div>
+      <div class="divider"></div>
+      <div class="step">
+        <span class="chip">5</span>
+        <span>Review</span>
+      </div>
+    </div>
+    <button mat-flat-button color="accent" [disabled]="!selected">NEXT
+      <div [class.show]="selected" class="step-helper">
+      Click to<br>continue
+    </div></button>
+  </div>
 </main>

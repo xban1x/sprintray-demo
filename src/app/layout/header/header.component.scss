@@ -26,12 +26,14 @@
       line-height: 20px;
       color: var(--font-white-me);
       text-decoration: none;
+      box-sizing: border-box;
+      height: 64px;
       cursor: pointer;
       &:hover {
         color: var(--font-white-he);
       }
       &.active {
-        color: var(--font-white-he);
+        border-bottom: 3px solid #cc0033;
       }
     }
   }

@@ -9,15 +9,19 @@ import { HomeService, Treatment } from '../services/home.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  @ViewSelectSnapshot(HomeService.treatments) treatments!: Treatment[];
+  @ViewSelectSnapshot(HomeService.treatments) public treatments!: Treatment[];
   @ViewSelectSnapshot(HomeService.recent_treatments)
-  recent_treatments!: Treatment[];
-  @ViewSelectSnapshot(HomeService.selected) selected!: Treatment;
-  @ViewSelectSnapshot(HomeService.tags) tags!: string[];
+  public recent_treatments!: Treatment[];
+  @ViewSelectSnapshot(HomeService.selected) public selected!: Treatment;
+  @ViewSelectSnapshot(HomeService.tags) public tags!: string[];
 
   constructor(public home: HomeService) {}
 
   ngOnInit(): void {
     this.home.getTreatments();
+  }
+
+  currentYear(): number {
+    return new Date().getFullYear();
   }
 }
