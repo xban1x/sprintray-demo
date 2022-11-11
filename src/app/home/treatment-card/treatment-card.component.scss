@@ -3,7 +3,8 @@
   flex-direction: column;
   border: 1px solid var(--divider-light);
   padding: 16px 16px 18px;
-  width: 246px;
+  min-width: 246px;
+  width: 100%;
   box-sizing: border-box;
   border-radius: 8px;
   background-color: #fff;
@@ -24,6 +25,30 @@
     border-bottom: 4px solid #cc0033;
     padding: 16px 16px 15px;
   }
+  @media screen and (max-width: 555px) {
+    padding: 16px;
+    min-width: 100px;
+    .img-container {
+      height: 112px;
+      padding: 16px 8px;
+    }
+    .header {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .name {
+      margin-top: auto;
+      font-size:14px;
+      line-height: 20px;
+    }
+    .properties {
+      gap: 8px;
+      .property {
+        flex-direction: column;
+      }
+    }
+  }
 }
 
 .img-container {
@@ -31,7 +56,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(180px - 32px);
+  height: 180px;
+  box-sizing: border-box;
   padding: 16px 0;
   img {
     width: 100%;

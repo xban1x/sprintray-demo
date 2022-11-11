@@ -1,6 +1,14 @@
-<ng-container *ngFor="let breadcrumb of BREADCRUMBS; let i = index">
-  <a [routerLink]="breadcrumb.link" [class.disabled]="!breadcrumb.link">{{
-    breadcrumb.text
+<div class="desktop">
+  <ng-container *ngFor="let breadcrumb of BREADCRUMBS; let i = index">
+    <a [routerLink]="breadcrumb.link" [class.disabled]="!breadcrumb.link">{{
+      breadcrumb.text
+    }}</a>
+    <mat-icon *ngIf="i + 1 < BREADCRUMBS.length">chevron_right</mat-icon>
+  </ng-container>
+</div>
+<div class="mobile">
+  <mat-icon >chevron_left</mat-icon>
+  <a [routerLink]="BREADCRUMBS[BREADCRUMBS.length - 2].link">{{
+    BREADCRUMBS[BREADCRUMBS.length - 2].text
   }}</a>
-  <mat-icon *ngIf="i + 1 < BREADCRUMBS.length">chevron_right</mat-icon>
-</ng-container>
+</div>

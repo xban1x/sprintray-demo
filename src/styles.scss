@@ -136,10 +136,14 @@ body {
   top: -8px;
 }
 // Override chips in App Treatment Card
-app-treatment-card {
+ app-treatment-card {
   .mat-chip-list-wrapper {
     margin: 0;
     gap: 8px;
+    @media screen and (max-width: 555px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
     .mat-standard-chip {
       margin: 0;
       min-height: 24px;
@@ -148,6 +152,34 @@ app-treatment-card {
       line-height: 18px;
       padding: 3px 10px;
       color: var(--font-dark-he);
+      background: #F2F3F5;
+      &.mat-chip-disabled {
+        opacity: 1;
+      }
+    }
+  }
+}
+.category-filter {
+  .mat-chip-list-wrapper {
+    margin: 0;
+    gap: 8px;
+    .mat-standard-chip {
+      margin: 0;
+      min-height: 32px;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 18px;
+      padding: 7px 10px;
+      color: var(--font-dark-he);
+      background: #F2F3F5;
+      .mat-chip-remove {
+        opacity: 1;
+        .mat-icon {
+        width: 20px;
+        height:20px;
+        font-size: 20px;
+        color: #CFD0D2;
+      }}
       &.mat-chip-disabled {
         opacity: 1;
       }
@@ -156,6 +188,9 @@ app-treatment-card {
 }
 // Override form fields
 mat-form-field.mat-form-field-appearance-fill {
+  .mat-form-field-infix {
+    width: 0;
+  }
   .mat-form-field-wrapper {
     padding: 0;
   }

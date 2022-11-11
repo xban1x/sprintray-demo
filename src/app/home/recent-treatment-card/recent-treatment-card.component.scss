@@ -3,8 +3,10 @@
   border: 1px solid var(--divider-light);
   padding: 8px 16px;
   box-sizing: border-box;
-  width: 244px;
+  min-width: 246px;
+  width: 100%;
   border-radius: 8px;
+  height: 64px;
   background-color: #fff;
   justify-content: space-between;
   align-items: center;

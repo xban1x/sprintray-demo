@@ -57,13 +57,13 @@ export class HomeService extends NgxsDataRepository<HomeStateModel> {
   }
 
   @DataAction()
-  async getTreatments(): Promise<Treatment[]> {
+  getTreatments(): Treatment[] {
     const TREATMENTS = [
       {
         tags: ['Occlusal Guards', 'AI Services'],
         image: 'assets/treatments/Night Guard.png',
         name: 'Occlusal Guard',
-        turnaround_time: 'From 30 mins',
+        turnaround_time: 'From 30 Mins',
         price: 'Starting from $25.00',
         selected: false,
       },
@@ -143,8 +143,11 @@ export class HomeService extends NgxsDataRepository<HomeStateModel> {
         selected: false,
       },
     ];
+    const state = this.getState();
     this.patchState({
-      treatments: TREATMENTS,
+      treatments: TREATMENTS
+      .filter((treatment) => state.search ? treatment.name.toLowerCase().indexOf('' + state.search.toLowerCase()) > -1 : true)
+      .filter((treatment)=> (state.filter_tags ?? []).length > 0 ? state.filter_tags?.find((tag) => treatment.tags.includes(tag)) : true),
       recent_treatments: TREATMENTS.slice(0, 4),
       tags: [
         ...new Set(TREATMENTS.map((treatment) => treatment.tags).flat()).keys(),
@@ -155,5 +158,17 @@ export class HomeService extends NgxsDataRepository<HomeStateModel> {
 
   @DataAction() selectTreatment(treatment: Treatment): void {
     this.patchState({ selected: treatment });
+  }
+
+  @DataAction() filterSearch(search: string) {
+    this.patchState({search});
+    this.getTreatments();
+    console.log('Search');
+  }
+
+  @DataAction() filterCategories(categories: string[]): void {
+    this.patchState({filter_tags: categories});
+    this.getTreatments();
+    console.log('Category')
   }
 }

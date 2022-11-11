@@ -7,6 +7,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 1047px) {
+    padding: 0 16px;
+  }
 }
 
 .left {
@@ -37,6 +40,11 @@
       }
     }
   }
+  @media screen and (max-width: 1047px) {
+    nav {
+      display: none;
+    }
+  }
 }
 
 .right {
@@ -54,12 +62,30 @@
     &:hover {
       color: var(--font-white-he);
     }
+    &.mobile {
+      display: none;
+    }
     &.user {
       padding: 12px 0 12px 40px;
       img {
         border-radius: 50%;
         margin-right: 8px;
       }
+    }
+  }
+  @media screen and (max-width: 1047px) {
+    button {
+      border-left: none;
+      padding: 20px 0;
+    }
+    button + button {
+      margin-left: 32px;
+    }
+    button.mobile {
+      display: initial;
+    }
+    button.user {
+      display: none;
     }
   }
 }

@@ -26,4 +26,28 @@
     height: 20px;
     width: 20px;
   }
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 1047px) {
+    padding: 12px 16px;
+    height: 44px;
+    .mobile {
+      display: flex;
+      align-items: center;
+    }
+    mat-icon {
+      margin:0 8px 0 0;
+    }
+    a:last-child {
+      color: var(--font-white-me);
+    }
+    .desktop {
+      display: none;
+    }
+  }
 }

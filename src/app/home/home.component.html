@@ -12,8 +12,8 @@
           <div class="treatment">
             <div class="header">
               <div>
-              <p class="title">Treatment</p>
-              <p class="empty">Select treatment</p>
+                <p class="title">Treatment</p>
+                <p class="empty">Select treatment</p>
               </div>
             </div>
           </div>
@@ -30,11 +30,11 @@
           </div>
           <div class="properties">
             <div class="property">
-              <span class="label">Turnaround time:</span>
+              <span class="label">Turnaround Time:</span>
               <span class="value">{{ selected.turnaround_time }}</span>
             </div>
             <div class="property">
-              <span class="label">Price</span>
+              <span class="label">Price:</span>
               <span class="value">{{ selected.price }}</span>
             </div>
           </div>
@@ -51,15 +51,20 @@
       <div class="right">
         <mat-form-field class="search">
           <mat-label>Search</mat-label>
-          <input #search matInput />
+          <input #search matInput (input)="home.filterSearch(search.value)" />
           <mat-icon matPrefix>search</mat-icon>
-          <mat-icon *ngIf="search.value" matSuffix (click)="search.value = ''"
+          <mat-icon class="clickable" *ngIf="search.value" matSuffix (click)="search.value = '';home.filterSearch('')"
             >close</mat-icon
           >
         </mat-form-field>
         <mat-form-field class="category">
           <mat-label>Filter by Category</mat-label>
-          <mat-select multiple>
+          <mat-select
+            multiple
+            matInput
+            #category
+            (selectionChange)="home.filterCategories(category.value)"
+          >
             <mat-option *ngFor="let tag of tags" [value]="tag">{{
               tag
             }}</mat-option>
@@ -67,50 +72,78 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="featured">
-      <div class="title">
-        <mat-icon>star</mat-icon>
-        Recently used:
+    <div class="content" *ngIf="treatments.length > 0; else noResults">
+      <div class="featured" [class.small-margin]="(category.value ?? []).length == 0" *ngIf="search.value === ''">
+        <div class="title">
+          <mat-icon>star</mat-icon>
+          Recently used:
+        </div>
+        <div class="recent-treatments">
+          <app-recent-treatment-card
+            *ngFor="let treatment of recent_treatments"
+            [treatment]="treatment"
+            (click)="home.selectTreatment(treatment)"
+          ></app-recent-treatment-card>
+        </div>
       </div>
-      <div class="recent-treatments">
-        <app-recent-treatment-card
-          *ngFor="let treatment of recent_treatments"
+      <div class="category-filter" *ngIf="(category.value ?? []).length > 0">
+        <div class="title">
+          <mat-icon>filter_alt</mat-icon>
+          Filter by:
+        </div>
+        <mat-chip-list>
+          <mat-chip
+            *ngFor="let tag of category.value"
+            >{{ tag }}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button></mat-chip
+          >
+        </mat-chip-list>
+      </div>
+      <div class="treatments">
+        <app-treatment-card
+          *ngFor="let treatment of treatments"
           [treatment]="treatment"
           (click)="home.selectTreatment(treatment)"
           [class.active]="selected && selected.name === treatment.name"
-        ></app-recent-treatment-card>
+        ></app-treatment-card>
       </div>
     </div>
-    <div class="treatments">
-      <app-treatment-card
-        *ngFor="let treatment of treatments"
-        [treatment]="treatment"
-        (click)="home.selectTreatment(treatment)"
-        [class.active]="selected && selected.name === treatment.name"
-      ></app-treatment-card>
-    </div>
+    <ng-template #noResults>
+      <div class="content no-results-found">
+        <div class="left">
+          <h3>No results found</h3>
+          <p>Try changing your search terms or use the filters to <br>browse by category.</p>
+        </div>
+        <div class="right">
+          <img src="assets/images/no_results.png"/>
+        </div>
+      </div>
+    </ng-template>
     <div class="footer">
-      <p>Copyright © {{currentYear()}} SprintRay Inc. All rights reserved.</p>
+      <p>Copyright © {{ currentYear() }} SprintRay Inc. All rights reserved.</p>
       <div class="links">
-        <a href="/feedback"><mat-icon>chat_bubble</mat-icon> Give us Feedback</a>
+        <a href="/feedback"
+          ><mat-icon>chat_bubble</mat-icon> Give us Feedback</a
+        >
         <a href="/privacy-policy">Privacy Policy</a>
         <a href="/terms-of-use">Terms of Use</a>
       </div>
     </div>
   </article>
   <div class="stepper">
-    <button mat-flat-button color="accent" disabled>BACK</button>
+    <button mat-flat-button class="desktop" color="accent" disabled>BACK</button>
+    <button mat-flat-button class="mobile" color="accent" disabled><mat-icon>arrow_back</mat-icon></button>
     <div class="steps">
       <div class="step current">
         <span class="chip">1</span>
         <span>Treatment</span>
       </div>
       <div class="divider"></div>
-      <div class="step"><span class="chip">2</span>
-        <span>Details</span></div>
+      <div class="step"><span class="chip">2</span> <span>Details</span></div>
       <div class="divider"></div>
-      <div class="step"><span class="chip">3</span>
-        <span>Files</span></div>
+      <div class="step"><span class="chip">3</span> <span>Files</span></div>
       <div class="divider"></div>
       <div class="step">
         <span class="chip">4</span>
@@ -122,9 +155,18 @@
         <span>Review</span>
       </div>
     </div>
-    <button mat-flat-button color="accent" [disabled]="!selected">NEXT
+    <button mat-flat-button class="desktop" color="accent" [disabled]="!selected">
+      NEXT
       <div [class.show]="selected" class="step-helper">
-      Click to<br>continue
-    </div></button>
+        Click to<br />continue
+      </div>
+    </button>
+    <button mat-flat-button class="mobile" color="accent" [disabled]="!selected">
+      NEXT
+      <div [class.show]="selected" class="step-helper">
+        Click to<br />continue
+      </div>
+    </button>
+
   </div>
 </main>
